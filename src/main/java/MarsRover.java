@@ -13,28 +13,31 @@ public class MarsRover {
         int roverx = reader.nextInt();
         System.out.println("Insert vertical initial rover position:");
         int rovery = reader.nextInt();
+        Position position = new Position(roverx, rovery);
         System.out.println("Insert initial rover direction:");
         String input = reader.next(); //n = north, e = east, w = west, s = south
         Direction direction = Direction.fromString(input);
         do {
             System.out.println("Insert command (f = forward, b = backward, l = turn left, r = turn right):");
             String command = reader.next();
-            RoverState state = processCommand(roverx, rovery, direction, command);
-            roverx = state.x();
-            rovery = state.y();
+            RoverState state = processCommand(position, direction, command);
+            position = state.position();
             direction = state.direction();
-            System.out.printf("Rover is at x:%d y:%d facing:%s%n", roverx, rovery, direction.toString());
+            System.out.printf("Rover is at x:%d y:%d facing:%s%n", position.x(), position.y(), direction.toString());
         } while (true);
     }
 
-    static RoverState processCommand(int roverx, int rovery, Direction direction, String command) {
+    static RoverState processCommand(Position position, Direction direction, String command) {
+        int newX = position.x();
+        int newY = position.y();
+
         if (command.equals("f")) {
-            roverx += direction.deltaX();
-            rovery += direction.deltaY();
+            newX += direction.deltaX();
+            newY += direction.deltaY();
         }
         if (command.equals("b")) {
-            roverx -= direction.deltaX();
-            rovery -= direction.deltaY();
+            newX -= direction.deltaX();
+            newY -= direction.deltaY();
         }
         if (command.equals("l")) {
             direction = direction.rotateLeft();
@@ -45,6 +48,6 @@ public class MarsRover {
 
         }
 
-        return new RoverState(roverx, rovery, direction);
+        return new RoverState(new Position(newX, newY), direction);
     }
 }

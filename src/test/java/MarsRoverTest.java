@@ -29,10 +29,10 @@ class MarsRoverTest {
     })
     void processCommand(int startX, int startY, Direction dir, String cmd,
                         int expectedX, int expectedY, Direction expectedDir) {
-        RoverState result = MarsRover.processCommand(startX, startY, dir, cmd);
+        RoverState result = MarsRover.processCommand(new Position(startX, startY), dir, cmd);
 
-        assertThat(result.x()).isEqualTo(expectedX);
-        assertThat(result.y()).isEqualTo(expectedY);
+        assertThat(result.position().x()).isEqualTo(expectedX);
+        assertThat(result.position().y()).isEqualTo(expectedY);
         assertThat(result.direction()).isEqualTo(expectedDir);
     }
 }
