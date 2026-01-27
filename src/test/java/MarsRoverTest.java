@@ -11,11 +11,11 @@ class MarsRoverTest {
             // startX, startY, direction, command, expectedX, expectedY, expectedDir
             "0, 0, NORTH, f, 0, 1, NORTH",
             "0, 0, EAST, f, 1, 0, EAST",
-            "0, 0, SOUTH, f, 0, -1, SOUTH",
-            "0, 0, WEST, f, -1, 0, WEST",
+            "0, 0, SOUTH, f, 0, 9, SOUTH",
+            "0, 0, WEST, f, 9, 0, WEST",
 
-            "0, 0, NORTH, b, 0, -1, NORTH",
-            "0, 0, EAST, b, -1, 0, EAST",
+            "0, 0, NORTH, b, 0, 9, NORTH",
+            "0, 0, EAST, b, 9, 0, EAST",
             "0, 0, SOUTH, b, 0, 1, SOUTH",
             "0, 0, WEST, b, 1, 0, WEST",
 
