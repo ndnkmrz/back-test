@@ -28,16 +28,11 @@ public class MarsRover {
     }
 
     static RoverState processCommand(Position position, Direction direction, String command) {
-        int newX = position.x();
-        int newY = position.y();
-
         if (command.equals("f")) {
-            newX += direction.deltaX();
-            newY += direction.deltaY();
+            position = position.move(direction);
         }
         if (command.equals("b")) {
-            newX -= direction.deltaX();
-            newY -= direction.deltaY();
+            position = position.moveBackward(direction);
         }
         if (command.equals("l")) {
             direction = direction.rotateLeft();
@@ -48,6 +43,6 @@ public class MarsRover {
 
         }
 
-        return new RoverState(new Position(newX, newY), direction);
+        return new RoverState(position, direction);
     }
 }
