@@ -1,2 +1,2 @@
-record RoverState(Position position, Direction direction) {
+public record RoverState(Position position, Direction direction) {
 }

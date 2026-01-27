@@ -28,21 +28,8 @@ public class MarsRover {
     }
 
     static RoverState processCommand(Position position, Direction direction, String command, Planet planet) {
-        if (command.equals("f")) {
-            position = position.move(direction);
-        }
-        if (command.equals("b")) {
-            position = position.moveBackward(direction);
-        }
-        if (command.equals("l")) {
-            direction = direction.rotateLeft();
-
-        }
-        if (command.equals("r")) {
-            direction = direction.rotateRight();
-
-        }
-        position = planet.wrap(position);
-        return new RoverState(position, direction);
+        Command cmd = new CommandParser().parse(command);
+        RoverState state = new RoverState(position, direction);
+        return cmd.execute(state, planet);
     }
 }
