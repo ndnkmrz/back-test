@@ -59,13 +59,13 @@ public class MarsRover {
             if (roverz.equals("n")) {
                 roverz = "w";
             }
-            if (roverz.equals("w")) {
+            else if (roverz.equals("w")) {
                 roverz = "s";
             }
-            if (roverz.equals("s")) {
+            else if (roverz.equals("s")) {
                 roverz = "e";
             }
-            if (roverz.equals("e")) {
+            else if (roverz.equals("e")) {
                 roverz = "n";
             }
         }
@@ -73,13 +73,13 @@ public class MarsRover {
             if (roverz.equals("n")) {
                 roverz = "e";
             }
-            if (roverz.equals("e")) {
+            else if (roverz.equals("e")) {
                 roverz = "s";
             }
-            if (roverz.equals("s")) {
+            else if (roverz.equals("s")) {
                 roverz = "w";
             }
-            if (roverz.equals("w")) {
+            else if (roverz.equals("w")) {
                 roverz = "n";
             }
         }
