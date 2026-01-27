@@ -1,2 +1,2 @@
-record RoverState(int x, int y, String direction) {
+record RoverState(int x, int y, Direction direction) {
 }

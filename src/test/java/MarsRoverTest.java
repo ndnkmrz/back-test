@@ -7,28 +7,28 @@ class MarsRoverTest {
     @ParameterizedTest
     @CsvSource({
             // startX, startY, direction, command, expectedX, expectedY, expectedDir
-            "0, 0, n, f, 0, 1, n",
-            "0, 0, e, f, 1, 0, e",
-            "0, 0, s, f, 0, -1, s",
-            "0, 0, w, f, -1, 0, w",
+            "0, 0, NORTH, f, 0, 1, NORTH",
+            "0, 0, EAST, f, 1, 0, EAST",
+            "0, 0, SOUTH, f, 0, -1, SOUTH",
+            "0, 0, WEST, f, -1, 0, WEST",
 
-            "0, 0, n, b, 0, -1, n",
-            "0, 0, e, b, -1, 0, e",
-            "0, 0, s, b, 0, 1, s",
-            "0, 0, w, b, 1, 0, w",
+            "0, 0, NORTH, b, 0, -1, NORTH",
+            "0, 0, EAST, b, -1, 0, EAST",
+            "0, 0, SOUTH, b, 0, 1, SOUTH",
+            "0, 0, WEST, b, 1, 0, WEST",
 
-            "0, 0, n, l, 0, 0, w",
-            "0, 0, w, l, 0, 0, s",
-            "0, 0, s, l, 0, 0, e",
-            "0, 0, e, l, 0, 0, n",
+            "0, 0, NORTH, l, 0, 0, WEST",
+            "0, 0, WEST, l, 0, 0, SOUTH",
+            "0, 0, SOUTH, l, 0, 0, EAST",
+            "0, 0, EAST, l, 0, 0, NORTH",
 
-            "0, 0, n, r, 0, 0, e",
-            "0, 0, e, r, 0, 0, s",
-            "0, 0, s, r, 0, 0, w",
-            "0, 0, w, r, 0, 0, n"
+            "0, 0, NORTH, r, 0, 0, EAST",
+            "0, 0, EAST, r, 0, 0, SOUTH",
+            "0, 0, SOUTH, r, 0, 0, WEST",
+            "0, 0, WEST, r, 0, 0, NORTH"
     })
-    void processCommand(int startX, int startY, String dir, String cmd,
-                        int expectedX, int expectedY, String expectedDir) {
+    void processCommand(int startX, int startY, Direction dir, String cmd,
+                        int expectedX, int expectedY, Direction expectedDir) {
         RoverState result = MarsRover.processCommand(startX, startY, dir, cmd);
 
         assertThat(result.x()).isEqualTo(expectedX);
