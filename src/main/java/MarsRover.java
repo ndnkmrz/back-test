@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class MarsRover {
 
     public static void main(String[] args) {
+
         Scanner reader = new Scanner(System.in);
         System.out.println("Insert horizontal map size:");
         int sizex = reader.nextInt();
@@ -17,19 +18,15 @@ public class MarsRover {
         System.out.println("Insert initial rover direction:");
         String input = reader.next(); //n = north, e = east, w = west, s = south
         Direction direction = Direction.fromString(input);
+        Rover rover = new Rover(position, direction);
         do {
             System.out.println("Insert command (f = forward, b = backward, l = turn left, r = turn right):");
             String command = reader.next();
-            RoverState state = processCommand(position, direction, command, planet);
-            position = state.position();
-            direction = state.direction();
-            System.out.printf("Rover is at x:%d y:%d facing:%s%n", position.x(), position.y(), direction.toString());
+            rover.execute(command, planet);
+            System.out.printf("Rover is at x:%d y:%d facing:%s%n",
+                    rover.position().x(),
+                    rover.position().y(),
+                    rover.direction());
         } while (true);
-    }
-
-    static RoverState processCommand(Position position, Direction direction, String command, Planet planet) {
-        Command cmd = new CommandParser().parse(command);
-        RoverState state = new RoverState(position, direction);
-        return cmd.execute(state, planet);
     }
 }
