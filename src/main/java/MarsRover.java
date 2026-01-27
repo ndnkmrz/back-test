@@ -29,32 +29,12 @@ public class MarsRover {
 
     static RoverState processCommand(int roverx, int rovery, Direction direction, String command) {
         if (command.equals("f")) {
-            if (direction == Direction.NORTH) {
-                rovery += 1;
-            }
-            if (direction == Direction.WEST) {
-                roverx -= 1;
-            }
-            if (direction == Direction.SOUTH) {
-                rovery -= 1;
-            }
-            if (direction == Direction.EAST) {
-                roverx += 1;
-            }
+            roverx += direction.deltaX();
+            rovery += direction.deltaY();
         }
         if (command.equals("b")) {
-            if (direction == Direction.NORTH) {
-                rovery -= 1;
-            }
-            if (direction == Direction.WEST) {
-                roverx += 1;
-            }
-            if (direction == Direction.SOUTH) {
-                rovery += 1;
-            }
-            if (direction == Direction.EAST) {
-                roverx -= 1;
-            }
+            roverx -= direction.deltaX();
+            rovery -= direction.deltaY();
         }
         if (command.equals("l")) {
             direction = direction.rotateLeft();

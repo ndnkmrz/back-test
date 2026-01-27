@@ -1,10 +1,21 @@
 public enum Direction {
-    NORTH,
-    EAST,
-    SOUTH,
-    WEST;
+    NORTH(0, 1),
+    EAST(1, 0),
+    SOUTH(0, -1),
+    WEST(-1, 0);
 
     private static final Direction[] CACHED_VALUES = values();
+
+    private final int deltaX;
+    private final int deltaY;
+
+    Direction(int deltaX, int deltaY) {
+        this.deltaX = deltaX;
+        this.deltaY = deltaY;
+    }
+
+    public int deltaX() { return deltaX; }
+    public int deltaY() { return deltaY; }
 
     public Direction rotateLeft() {
         return CACHED_VALUES[(ordinal() + 3) % 4];
