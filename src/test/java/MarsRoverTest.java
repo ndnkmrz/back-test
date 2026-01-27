@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class MarsRoverTest {
 
+    private final Planet planet = new Planet(10, 10);
+
     @ParameterizedTest
     @CsvSource({
             // startX, startY, direction, command, expectedX, expectedY, expectedDir
@@ -29,7 +31,7 @@ class MarsRoverTest {
     })
     void processCommand(int startX, int startY, Direction dir, String cmd,
                         int expectedX, int expectedY, Direction expectedDir) {
-        RoverState result = MarsRover.processCommand(new Position(startX, startY), dir, cmd);
+        RoverState result = MarsRover.processCommand(new Position(startX, startY), dir, cmd, planet);
 
         assertThat(result.position().x()).isEqualTo(expectedX);
         assertThat(result.position().y()).isEqualTo(expectedY);

@@ -8,7 +8,7 @@ public class MarsRover {
         int sizex = reader.nextInt();
         System.out.println("Insert vertical map size:");
         int sizey = reader.nextInt();
-
+        Planet planet = new Planet(sizex, sizey);
         System.out.println("Insert horizontal initial rover position:");
         int roverx = reader.nextInt();
         System.out.println("Insert vertical initial rover position:");
@@ -20,14 +20,14 @@ public class MarsRover {
         do {
             System.out.println("Insert command (f = forward, b = backward, l = turn left, r = turn right):");
             String command = reader.next();
-            RoverState state = processCommand(position, direction, command);
+            RoverState state = processCommand(position, direction, command, planet);
             position = state.position();
             direction = state.direction();
             System.out.printf("Rover is at x:%d y:%d facing:%s%n", position.x(), position.y(), direction.toString());
         } while (true);
     }
 
-    static RoverState processCommand(Position position, Direction direction, String command) {
+    static RoverState processCommand(Position position, Direction direction, String command, Planet planet) {
         if (command.equals("f")) {
             position = position.move(direction);
         }
@@ -42,7 +42,7 @@ public class MarsRover {
             direction = direction.rotateRight();
 
         }
-
+        position = planet.wrap(position);
         return new RoverState(position, direction);
     }
 }
