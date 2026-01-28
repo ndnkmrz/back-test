@@ -1,3 +1,5 @@
+package marsrover.domain.command;
+
 public class CommandParser {
 
     public Command parse(String input) {

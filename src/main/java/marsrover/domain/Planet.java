@@ -1,3 +1,5 @@
+package marsrover.domain;
+
 public record Planet(int width, int height) {
 
     public Position wrap(Position position){

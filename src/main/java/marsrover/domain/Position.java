@@ -1,3 +1,5 @@
+package marsrover.domain;
+
 public record Position(int x, int y) {
 
     public Position move(Direction direction){

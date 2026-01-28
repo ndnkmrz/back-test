@@ -1,3 +1,10 @@
+package marsrover.domain.command;
+
+import marsrover.domain.Obstacles;
+import marsrover.domain.Planet;
+import marsrover.domain.Position;
+import marsrover.domain.RoverState;
+
 public class MoveForward implements Command {
 
     @Override

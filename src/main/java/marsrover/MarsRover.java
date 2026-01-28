@@ -1,3 +1,7 @@
+package marsrover;
+
+import marsrover.infrastructure.ConsoleAdapter;
+
 import java.util.Scanner;
 
 public class MarsRover {

@@ -1,3 +1,7 @@
+package marsrover;
+
+import marsrover.domain.Planet;
+import marsrover.domain.Position;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

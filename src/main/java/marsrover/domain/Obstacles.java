@@ -1,3 +1,5 @@
+package marsrover.domain;
+
 import java.util.Set;
 
 public class Obstacles {

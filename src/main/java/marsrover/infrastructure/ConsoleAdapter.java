@@ -1,3 +1,8 @@
+package marsrover.infrastructure;
+
+import marsrover.domain.*;
+import marsrover.domain.command.CommandResult;
+
 import java.io.PrintStream;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -24,11 +29,24 @@ public class ConsoleAdapter {
         while (true) {
             output.println("Insert command (f = forward, b = backward, l = turn left, r = turn right):");
             String command = scanner.next();
-            rover.execute(command, planet, obstacles);
-            output.printf("Rover is at x:%d y:%d facing:%s%n",
-                    rover.position().x(),
-                    rover.position().y(),
-                    rover.direction());
+            CommandResult result = rover.execute(command, planet, obstacles);
+
+            switch (result) {
+                case CommandResult.Success s -> output.printf(
+                        "Rover is at x:%d y:%d facing:%s%n",
+                        rover.position().x(),
+                        rover.position().y(),
+                        rover.direction()
+                );
+                case CommandResult.ObstacleDetected o -> output.printf(
+                        "Obstacle detected at x:%d y:%d! Rover stayed at x:%d y:%d facing:%s%n",
+                        o.obstacle().x(),
+                        o.obstacle().y(),
+                        rover.position().x(),
+                        rover.position().y(),
+                        rover.direction()
+                );
+            }
         }
     }
 

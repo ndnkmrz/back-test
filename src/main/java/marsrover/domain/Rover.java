@@ -1,3 +1,9 @@
+package marsrover.domain;
+
+import marsrover.domain.command.Command;
+import marsrover.domain.command.CommandParser;
+import marsrover.domain.command.CommandResult;
+
 public class Rover {
 
     private RoverState state;
@@ -7,13 +13,15 @@ public class Rover {
         this.state = new RoverState(position, direction);
     }
 
-    public void execute(String commandString, Planet planet, Obstacles obstacles) {
+    public CommandResult execute(String commandString, Planet planet, Obstacles obstacles) {
         Command command = parser.parse(commandString);
         CommandResult result = command.execute(state, planet, obstacles);
 
         if (result instanceof CommandResult.Success success) {
             state = success.state();
         }
+
+        return result;
     }
 
     public Position position() {

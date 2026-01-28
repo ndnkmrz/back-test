@@ -4,9 +4,9 @@ Hello candidate!!
 
 Welcome to Wallapop and its backend technical test
 
-## Mars Rover refactoring kata
+## Mars marsrover.domain.Rover refactoring kata
 
-We need to improve the existing solution that translates commands sent from Earth to instructions that are understood by our Rover on Mars
+We need to improve the existing solution that translates commands sent from Earth to instructions that are understood by our marsrover.domain.Rover on Mars
 
 Currently, the code is very complicated and tangled, so we'd like you to invest some time to clean it up
 
@@ -14,15 +14,15 @@ Currently, the code is very complicated and tangled, so we'd like you to invest 
 ```
 Given:
  - a two dimensional map of Mars
- - the initial starting point and direction of the Rover
+ - the initial starting point and direction of the marsrover.domain.Rover
  
 When:
  - a command is received
    move `forward` or `backward` or rotate `left` or `right` (90 degrees)
 
 Then:
- - move the Rover
-   if the Rover disappears over the edge of the map (the horizon), continue on the other side (remember, Mars is a sphere)
+ - move the marsrover.domain.Rover
+   if the marsrover.domain.Rover disappears over the edge of the map (the horizon), continue on the other side (remember, Mars is a sphere)
 ```
 
 #### Bonus point
@@ -33,13 +33,13 @@ Given:
  - a list of obstacles with their exact location
  
 When:
- - Rover moves
+ - marsrover.domain.Rover moves
 
 And:
- - Rover encounters an obstacle
+ - marsrover.domain.Rover encounters an obstacle
 
 Then:
- - report back the obstacle. The Rover should stay in its previous position
+ - report back the obstacle. The marsrover.domain.Rover should stay in its previous position
 ```
 
 ## Your solution
