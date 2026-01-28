@@ -2,13 +2,11 @@ package marsrover.domain;
 
 import marsrover.domain.command.Command;
 import marsrover.domain.command.CommandContext;
-import marsrover.domain.command.CommandParser;
 import marsrover.domain.command.CommandResult;
 
 public class Rover {
 
     private RoverState state;
-//    private final CommandParser parser = new CommandParser();
 
     Rover(Position position, Direction direction) {
         this.state = new RoverState(position, direction);
