@@ -1,9 +1,21 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'jacoco'
 }
 
 java {
-    sourceCompatibility = '21'
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+application {
+    mainClass = 'marsrover.MarsRover'
+}
+
+run {
+    standardInput = System.in
 }
 
 repositories {
@@ -18,4 +30,12 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        html.required = true
+    }
 }
