@@ -6,8 +6,6 @@ public enum Direction {
     SOUTH(0, -1),
     WEST(-1, 0);
 
-    private static final Direction[] CACHED_VALUES = values();
-
     private final int deltaX;
     private final int deltaY;
 
@@ -20,11 +18,30 @@ public enum Direction {
     public int deltaY() { return deltaY; }
 
     public Direction rotateLeft() {
-        return CACHED_VALUES[(ordinal() + 3) % 4];
+        return switch (this) {
+            case NORTH -> WEST;
+            case WEST -> SOUTH;
+            case SOUTH -> EAST;
+            case EAST -> NORTH;
+        };
     }
 
     public Direction rotateRight() {
-        return CACHED_VALUES[(ordinal() + 1) % 4];
+        return switch (this) {
+            case NORTH -> EAST;
+            case EAST -> SOUTH;
+            case SOUTH -> WEST;
+            case WEST -> NORTH;
+        };
+    }
+
+    public Direction opposite() {
+        return switch (this) {
+            case NORTH -> SOUTH;
+            case SOUTH -> NORTH;
+            case EAST -> WEST;
+            case WEST -> EAST;
+        };
     }
 
     public static Direction fromString(String input) {

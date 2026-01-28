@@ -12,10 +12,12 @@ public class ConsoleAdapter {
 
     private final Scanner scanner;
     private final PrintStream output;
+    private final RoverFactory roverFactory;
 
-    public ConsoleAdapter(Scanner scanner, PrintStream output) {
+    public ConsoleAdapter(Scanner scanner, PrintStream output, RoverFactory roverFactory) {
         this.scanner = scanner;
         this.output = output;
+        this.roverFactory = roverFactory;
     }
 
     public void run() {
@@ -24,7 +26,7 @@ public class ConsoleAdapter {
         Direction direction = readDirection();
         Obstacles obstacles = readObstacles();
 
-        Rover rover = new Rover(position, direction);
+        Rover rover = roverFactory.spawn(planet, position, direction);
 
         while (true) {
             output.println("Insert command (f = forward, b = backward, l = turn left, r = turn right):");

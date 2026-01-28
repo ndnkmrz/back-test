@@ -34,7 +34,7 @@ The solution follows Hexagonal Architecture principles with clear separation bet
 
 ## Refactoring Approach
 
-Used Strangler Fig pattern — replaced legacy code incrementally:
+Used incremental refactoring with characterization tests — replaced legacy code incrementally:
 
 1. Added characterization tests to lock existing behavior
 2. Fixed bug: rotation commands were cascading through all if-conditions
@@ -49,16 +49,14 @@ Used Strangler Fig pattern — replaced legacy code incrementally:
 Each commit compiles and passes tests.
 
 ## Test Coverage
-
-- Domain: 90%+ coverage
-- Commands: 95%+ coverage
+- Jacoco added
 - Parameterized tests for all movement/rotation combinations
 - Dedicated tests for obstacle detection and edge wrapping
 
 ## Future Improvements
 
-- REST/GraphQL adapter (domain unchanged)
+- REST adapter (domain unchanged)
 - Multiple rovers with collision detection
 - Different terrain types (slow, impassable)
 - Event sourcing for command history
-- Undo/redo functionality
+- Move for n spaces

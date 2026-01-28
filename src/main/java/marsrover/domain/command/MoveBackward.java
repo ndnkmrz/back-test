@@ -9,7 +9,7 @@ public class MoveBackward implements Command {
 
     @Override
     public CommandResult execute(RoverState state, Planet planet, Obstacles obstacles) {
-        Position newPosition = state.position().moveBackward(state.direction());
+        Position newPosition = state.position().move(state.direction().opposite());
         newPosition = planet.wrap(newPosition);
 
         if (obstacles.hasObstacleAt(newPosition)) {

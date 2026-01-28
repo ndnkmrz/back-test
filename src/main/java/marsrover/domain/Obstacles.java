@@ -7,7 +7,7 @@ public class Obstacles {
     private final Set<Position> positions;
 
     public Obstacles(Set<Position> positions) {
-        this.positions = positions;
+        this.positions = Set.copyOf(positions);
     }
 
     public boolean hasObstacleAt(Position position) {

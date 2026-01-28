@@ -9,7 +9,7 @@ public class Rover {
     private RoverState state;
     private final CommandParser parser = new CommandParser();
 
-    public Rover(Position position, Direction direction) {
+    Rover(Position position, Direction direction) {
         this.state = new RoverState(position, direction);
     }
 
