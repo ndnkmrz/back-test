@@ -1,6 +1,7 @@
 package marsrover.domain;
 
 import marsrover.domain.command.Command;
+import marsrover.domain.command.CommandContext;
 import marsrover.domain.command.CommandParser;
 import marsrover.domain.command.CommandResult;
 
@@ -15,7 +16,8 @@ public class Rover {
 
     public CommandResult execute(String commandString, Planet planet, Obstacles obstacles) {
         Command command = parser.parse(commandString);
-        CommandResult result = command.execute(state, planet, obstacles);
+        CommandContext context = new CommandContext(planet, obstacles);
+        CommandResult result = command.execute(state, context);
 
         if (result instanceof CommandResult.Success success) {
             state = success.state();
