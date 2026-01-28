@@ -1,6 +1,8 @@
 package marsrover.infrastructure;
 
 import marsrover.domain.*;
+import marsrover.domain.command.Command;
+import marsrover.domain.command.CommandParser;
 import marsrover.domain.command.CommandResult;
 
 import java.io.PrintStream;
@@ -13,11 +15,13 @@ public class ConsoleAdapter {
     private final Scanner scanner;
     private final PrintStream output;
     private final RoverFactory roverFactory;
+    private final CommandParser commandParser;
 
-    public ConsoleAdapter(Scanner scanner, PrintStream output, RoverFactory roverFactory) {
+    public ConsoleAdapter(Scanner scanner, PrintStream output, RoverFactory roverFactory, CommandParser commandParser) {
         this.scanner = scanner;
         this.output = output;
         this.roverFactory = roverFactory;
+        this.commandParser = commandParser;
     }
 
     public void run() {
@@ -30,8 +34,9 @@ public class ConsoleAdapter {
 
         while (true) {
             output.println("Insert command (f = forward, b = backward, l = turn left, r = turn right):");
-            String command = scanner.next();
-            CommandResult result = rover.execute(command, planet, obstacles);
+            String input = scanner.next();
+            Command cmd = commandParser.parse(input);
+            CommandResult result = rover.execute(cmd, planet, obstacles);
 
             switch (result) {
                 case CommandResult.Success s -> output.printf(

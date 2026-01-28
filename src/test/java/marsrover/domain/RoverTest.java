@@ -1,5 +1,7 @@
 package marsrover.domain;
 
+import marsrover.domain.command.Command;
+import marsrover.domain.command.CommandParser;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -11,6 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class RoverTest {
 
     private final Planet planet = new Planet(10, 10);
+    private final CommandParser parser = new CommandParser();
 
     @ParameterizedTest
     @CsvSource({
@@ -39,7 +42,8 @@ class RoverTest {
                         int expectedX, int expectedY, Direction expectedDir) {
         Rover rover = new Rover(new Position(startX, startY), dir);
         Obstacles obstacles = Obstacles.empty();
-        rover.execute(cmd, planet, obstacles);
+        Command command = parser.parse(cmd);
+        rover.execute(command, planet, obstacles);
         assertThat(rover.position().x()).isEqualTo(expectedX);
         assertThat(rover.position().y()).isEqualTo(expectedY);
         assertThat(rover.direction()).isEqualTo(expectedDir);
@@ -50,7 +54,7 @@ class RoverTest {
         Obstacles obstacles = new Obstacles(Set.of(new Position(0, 1)));
         Rover rover = new Rover(new Position(0, 0), Direction.NORTH);
 
-        rover.execute("f", planet, obstacles);
+        rover.execute(parser.parse("f"), planet, obstacles);
 
         assertThat(rover.position()).isEqualTo(new Position(0, 0));
     }
@@ -60,7 +64,7 @@ class RoverTest {
         Obstacles obstacles = new Obstacles(Set.of(new Position(0, 9)));
         Rover rover = new Rover(new Position(0, 0), Direction.NORTH);
 
-        rover.execute("b", planet, obstacles);
+        rover.execute(parser.parse("b"), planet, obstacles);
 
         assertThat(rover.position()).isEqualTo(new Position(0, 0));
     }
@@ -70,7 +74,7 @@ class RoverTest {
         Obstacles obstacles = new Obstacles(Set.of(new Position(0, 0)));
         Rover rover = new Rover(new Position(0, 0), Direction.NORTH);
 
-        rover.execute("l", planet, obstacles);
+        rover.execute(parser.parse("l"), planet, obstacles);
 
         assertThat(rover.direction()).isEqualTo(Direction.WEST);
     }
@@ -80,7 +84,7 @@ class RoverTest {
         Obstacles obstacles = new Obstacles(Set.of(new Position(0, 0)));
         Rover rover = new Rover(new Position(0, 9), Direction.NORTH);
 
-        rover.execute("f", planet, obstacles);
+        rover.execute(parser.parse("f"), planet, obstacles);
 
         assertThat(rover.position()).isEqualTo(new Position(0, 9));
     }

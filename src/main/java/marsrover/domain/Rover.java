@@ -8,14 +8,13 @@ import marsrover.domain.command.CommandResult;
 public class Rover {
 
     private RoverState state;
-    private final CommandParser parser = new CommandParser();
+//    private final CommandParser parser = new CommandParser();
 
     Rover(Position position, Direction direction) {
         this.state = new RoverState(position, direction);
     }
 
-    public CommandResult execute(String commandString, Planet planet, Obstacles obstacles) {
-        Command command = parser.parse(commandString);
+    public CommandResult execute(Command command, Planet planet, Obstacles obstacles) {
         CommandContext context = new CommandContext(planet, obstacles);
         CommandResult result = command.execute(state, context);
 
