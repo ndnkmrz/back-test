@@ -1,8 +1,8 @@
 public class TurnLeft implements Command {
 
     @Override
-    public RoverState execute(RoverState state, Planet planet) {
+    public CommandResult execute(RoverState state, Planet planet, Obstacles obstacles) {
         Direction newDirection = state.direction().rotateLeft();
-        return new RoverState(state.position(), newDirection);
+        return new CommandResult.Success(new RoverState(state.position(), newDirection));
     }
 }

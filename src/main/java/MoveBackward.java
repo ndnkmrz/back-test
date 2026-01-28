@@ -1,9 +1,14 @@
 public class MoveBackward implements Command {
 
     @Override
-    public RoverState execute(RoverState state, Planet planet) {
+    public CommandResult execute(RoverState state, Planet planet, Obstacles obstacles) {
         Position newPosition = state.position().moveBackward(state.direction());
         newPosition = planet.wrap(newPosition);
-        return new RoverState(newPosition, state.direction());
+
+        if (obstacles.hasObstacleAt(newPosition)) {
+            return new CommandResult.ObstacleDetected(newPosition);
+        }
+
+        return new CommandResult.Success(new RoverState(newPosition, state.direction()));
     }
 }

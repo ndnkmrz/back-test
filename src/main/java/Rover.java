@@ -7,9 +7,13 @@ public class Rover {
         this.state = new RoverState(position, direction);
     }
 
-    public void execute(String commandString, Planet planet) {
+    public void execute(String commandString, Planet planet, Obstacles obstacles) {
         Command command = parser.parse(commandString);
-        state = command.execute(state, planet);
+        CommandResult result = command.execute(state, planet, obstacles);
+
+        if (result instanceof CommandResult.Success success) {
+            state = success.state();
+        }
     }
 
     public Position position() {

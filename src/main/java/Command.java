@@ -1,3 +1,3 @@
 public interface Command {
-    RoverState execute(RoverState state, Planet planet);
+    CommandResult execute(RoverState state, Planet planet, Obstacles obstacles);
 }
