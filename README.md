@@ -1,11 +1,4 @@
-# Mars Rover
-
-A refactored solution for the Mars Rover kata.
-
-## Requirements
-
-- Java 21
-- Gradle (wrapper included)
+## Mars Rover refactoring kata
 
 ## How to build
 ```bash
