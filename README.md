@@ -1,9 +1,3 @@
-# Wallapop Backend Tech Test
-
-Hello candidate!!
-
-Welcome to Wallapop and its backend technical test
-
 ## Mars Rover refactoring kata
 
 We need to improve the existing solution that translates commands sent from Earth to instructions that are understood by our Rover on Mars
